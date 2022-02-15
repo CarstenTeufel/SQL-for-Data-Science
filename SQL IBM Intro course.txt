@@ -1,0 +1,937 @@
+--Select Statement
+
+---Select Count
+---Select Distinct
+---Select (...) Limit
+---- Select (...) Limit Offset
+
+
+-- Create Table Statement 
+
+
+--Insert Statement
+
+--Update Statement
+
+--Delete Statement
+
+
+--Relational Model
+---Creating a Database Instance on Cloud
+
+
+
+--Types of SQL Statements
+---Data Definition Language (DDL) Statements
+---Data Manipulation Language (DDM) Statements
+
+
+
+-- Create Table Statement 
+
+
+--Alter, Drop and Truncate Tables
+
+---Alter Table Statement
+----Add Column
+----Alter Column
+----Drop Column
+----Rename Column
+
+---Drop Table Statement
+
+---Truncate Table Statement
+
+
+--Simplifying Select Statement
+---
+---Where Clause
+----Where (...) Like Clause
+----Where (...) And Clause
+----Where (...) Between Clause
+----Where (...) Or Clause
+----Where (...) In Clause
+
+
+
+--Sorting Select Result Sets 
+---Order By Clause
+----Desc Keyword
+
+
+
+--Grouping Result Sets
+---Select Distinct Clause
+
+---Group By Clause
+----As keyword Clause
+----Having keyword Clause
+
+
+
+--Built-in Database Functions
+
+---Aggregate or Column functions
+----Sum Function
+----Min, Max Functions
+----Average Function
+
+---Scalar and String Functions
+
+----Scalar Functions
+-----Round Function
+
+----String Functions
+-----Length function
+-----Ucase and Lcase Functions
+
+
+
+---Date and Time Built-In Functions
+----Date Datatype
+----Time Datatype
+----Timestamp Datatype 
+
+----Date and Time Functions
+-----Year Function
+-----Month Function
+-----Day Function
+-----Dayofmonth Function
+-----Dayofweek Function
+-----Dayofyear Function
+-----Week Function
+-----Hour Function
+-----Minute Function
+-----Second Function
+
+----Date or Time Arithmetic
+
+-----Adding or substracting dates
+------Current Date Function
+------Current Time Function
+
+
+
+
+--Sub-queries and Nested Selects
+
+---Sub-queries
+----Column Expressions (List of columns)
+----Derived Tables or Table Expressions (FROM Clause)
+
+
+
+
+--Working with Multiple Tables
+---Sub-queries
+---Implicit JOIN
+
+
+
+--It's a good practice to write all commands in upper case
+--to easily distinguish code from data.
+
+
+
+				
+
+
+											--Select Statement
+
+--Select Count. Select the column, then count the values of every column selected
+
+SELECT COUNT(*) FROM tablename;
+
+
+--Example
+
+SELECT COUNT(country) FROM Medals
+	where COUNTRY='Canada';
+
+--Select Distinct. As you can cleary see, this one is for selecting 
+--unique values.
+
+
+SELECT DISTINCT columname FROM tablename;
+
+
+--Select limit is to limit the number of rows to display
+
+SELECT * FROM tablename LIMIT 10;
+
+SELECT * FROM tablename LIMIT 10 OFFSET 3; -- First three lines are ommited. Lines 4 to 10
+
+--Example
+
+SELECT * FROM medals
+	WHERE year = 2018 LIMIT 5;
+
+SELECT * FROM medals
+	WHERE year = 2018 LIMIT 15 OFFSET 5; -- six to fifteen
+
+
+-- Create Table Statement. This command will create a new table with a given name. You can add column names too
+
+
+
+
+-- Insert Statement will help input a new row in your table.
+
+INSERT INTO Table (Columnames) VALUES(values);
+
+--Example
+
+INSERT INTO Movies (ReleaseYear, Title, Actors, Locations) 
+	VALUES(1995, 'Tha Movie', 'Barnie', 'Mexico')
+	VALUES (2005, 'Spongebob', 'Spongebob', 'Bikini Bottom');
+
+
+
+
+
+--The Update Statement will alter data in a table. Statements like this are Data Manipulation Languages (DML) statements.
+
+UPDATE Tablename SET ColumnName=Value WHERE Condition
+
+--Example 
+
+UPDATE AUTHOR
+	SET LastName='Teufel'
+		FirstName='Carsten'
+		WHERE Author_Id='A2'
+
+
+
+
+--The Delete statement is a DML statement too. This will remove rows from a table.
+
+DELETE FROM TableName
+	WHERE ColName Condition
+
+--Example
+
+DELETE FROM Author 
+	WHERE Author_Id IN ('A2', 'A3')
+
+
+--The Relational Model is the most used data model, because it allows independence in the data.
+---The data is stored in tables, which permits logical data independence, physical data independence and physical storage independence.
+
+--The Entity-Relationship Model is an alternative to the Relational Data Model. In a database, an entity is independent from any other entity existing in it. Entities contain attributes, which are properties
+--- or characteristics of the entity. 
+
+--Thus, the entity book is a table, the attributes are the columns
+
+
+--In this model, each row or entity is assigned a primary key, which identifies every single entity. Foreign keys are primary keys that define other tables. This creates links between these tables.
+
+
+
+
+
+
+-- 		Creating a Database instance on Cloud
+
+--Cloud databases will provide ease of use and access, because anyone can access it through internet from almost anywhere.
+---Organizations will pay only for what they use and the cloud will be stored in backups on the remote server, thus providing safety to your data. 
+
+--Services for SQL Cloud Databases include
+---Amazon Relational Database Services (RDS)
+---Microsoft Azure SQL Database
+---Oracle Database Cloud Service
+---Databases for PostgreSQL
+---IBM DB2
+
+
+--The Cloud databases can run in
+---Virtual Machines (VMs) or Managed Services
+--- Single or Multi-tenant 
+
+--To run them, one needs to provision an instance of the DB Service on a Cloud Platform one chooses. A Database-as-a-Service, or DBaaS, gives one the chance of installing and administering the database 
+---software without the need of providing any hardware by the user.
+---The DbaaS will hold the data objects and tables, that one can query by using web interfaces and applications. 
+
+
+
+
+--Creating an instance of SQL on IBM DB2 on Cloud.
+
+--1. First, navigate through the IBM Cloud Catalog, then select the Db2 service. You will find variations of these, such as Db2 and Db2 Warehouse. For the sake of this excercise, we will choose the Db2 alone.
+
+--2. Then, select the lite plan, because we will work on a free service. If you do not see the Lite option, choose Dallas in the Region option.
+
+--3. To select your IBM Db2 service one created, select the "Services" in your IBM Cloud Dashboard
+
+--4. For the first time in your Database, you will need to create a set of new Credentials. Go to the Service credentials in your Db2 service, then click on New Credential, then create it.
+
+--5. The credential will display a set of codes in JSON format, which will contain a database name, port number, a host name, username (id for connection) and its password.
+
+
+
+
+
+-- Types of SQL Statements
+
+-- DDL or Data Definition Language Statements are used to:
+---Define, change or drop data.
+
+--Typical DDL statements are:
+--- CREATE. Used to create tables.
+---ALTER. Used for altering tables: adding, dropping or modifying
+---TRUNCATE is used for deleting data from a table (not the table)
+---DROP is used for deleting tables.
+
+--DML or Data Manipulation Language is used to read or modidfy tables.
+--- CRUD operations are DML itself (Create, Read, Update, Delete rows)
+
+--Typical DML statements are:
+---INSERT (inserting a row or rows of data into the table)
+---SELECT. Used to read or select rows in a table.
+---UPDATE Is used to edit rows in a table.
+---DELETE Statement deletes a row or rows.
+
+
+
+--CREATE table Statement (DDL)
+---The CREATE TABLE statement is used for creating new tables. First, you insert the statement, then, between parenthesis
+----you insert each column names. You can add the data type and optional parameters to every column right after the column name.
+-----To add several columns, place a comma after each column name (or datatype or optional parameters if specified).
+
+
+CREATE TABLE table_name
+	(
+	 column_name datatype optional_parameters,
+	 column_name2 datatype,
+	 column_name3 datatype
+	);
+
+--Example: This example is about creating a table for provinces in Canada
+
+CREATE TABLE canada_provinces(
+	id char(2) PRIMARY KEY NOT NULL, --This line creates province ID as an abreviation, with data type char or character with length of 2 fixated
+	name varchar(24)		 --This line creates the name column, with data type of variable character and fixated length of 24
+	);
+
+--Example 2: This example is about creating an Author table, with specific columns and datatypes
+
+CREATE TABLE Author(
+	author_ID CHAR(2) PRIMARY KEY NOT NULL,
+	lastname VARCHAR(15) NOT NULL,
+	firstname VARCHAR(15),
+	email VARCHAR(40),
+	city VARCHAR(15),
+	country CHAR(2)
+	);
+
+--Alter, Drop and Truncate Tables
+
+
+											--Alter Table Statement
+
+-- The ALTER TABLE ... ADD COLUMN Statement is used to:
+---Add or remove columns
+---Modify data type of columns
+---Add or remove keys
+---Add or remove constraints
+
+
+
+
+--The syntax for this is:
+
+ALTER TABLE table_name
+	ADD COLUMN col_name1 datatype
+	ADD COLUMN col_namen datatype;
+
+
+	
+--Example: To modify the author table and add a column named telephone_number we
+
+ALTER TABLE author
+	ADD COLUMN telephone_number BIGINT;		-- The BIGINT data type can hold numbers up to 19 digits.
+
+
+
+--To alter a column's datatype, we do as follows
+
+ALTER TABLE table_name
+	ALTER COLUMN col_namen SET DATA TYPE
+	datatype;
+
+
+
+--Example: To alter the table back to the character data type, we do this
+
+ALTER TABLE author
+	ALTER COLUMN telephone_number SET DATA TYPE		--This statement will not work if the existing data in the column is already not supported by this data type. You will get an error if this happens.
+	CHAR(20);
+
+
+--Example: Say, we want to drop the telephone_number column
+
+ALTER TABLE author
+	DROP COLUMN telephone_number;
+
+
+--Example: Say, we want to rename the telephone_number column into telephone
+
+ALTER TABLE author
+	RENAME COLUMN telephone_number;
+
+
+											--Drop Table Statement
+
+--The DROP TABLE statement will delete an entire table. It has the following syntax
+
+DROP TABLE table_name;
+
+
+--Example: dropping/deleting our author table
+
+DROP TABLE author;
+
+
+
+
+
+											--Truncate Table Statement
+
+
+--The TRUNCATE TABLE will delete the data in the table. It will delete every row in the table.
+---The syntax of this statement is:
+
+TRUNCATE TABLE table_name
+	IMMEDIATE; 				--IMMEDIATE specifies the data will be deleted inmediately and it cannot be undone.
+
+
+-Example: To truncate the whole Author table, we do this:
+
+TRUNCATE TABLE Author
+	INMEDIATE;
+
+
+
+
+
+
+											--Simplifying Select Statement
+
+
+--Where Clause
+
+--The WHERE Clause will help us search for data through the SELECT Statement using string patterns, ranges or sets of values. 
+---This way, the queries can be more specific and retrieve the data one needs.
+
+--The basic select form is, using the book database example,
+
+SELECT * FROM Author
+
+--Then, you can query for specific rows
+
+SELECT book_id, title FROM Author
+
+--This is why we need some SELECT Statement variations with the WHERE Clause. 
+
+--The WHERE Clause requieres a predicate, which is the expression to evaluate  
+---as True, False or Unknown
+
+--The basic form for WHERE Clause string searching is as follows:
+
+SELECT book_id, title FROM Author 
+	WHERE book_id='B1'
+	
+
+
+
+----Where (...) Like Clause
+
+--Like is the predicate used to search for a pattern inside a column.
+
+
+--The WHERE Clause can be used with wildcards too. A wildcard is used to replace another characters. 
+
+--The example that follows is the "%" wildcard. When used with the WHERE Clause, you can search for
+---all the rows containing a specific character or characters before or after it:
+
+SELECT Col_name FROM Tablename
+	WHERE Col_name LIKE 'R%';
+
+--As a result you will get all the rows with Col_name containing R as first letter.
+
+
+
+----Where (...) And Clause
+
+--The WHERE (...) AND Clause will help you input more than one constraint.
+---For example, to search for books with 290 to 300 pages and their names, we can do this:
+
+SELECT title, pages FROM Author
+	WHERE pages>=290 AND pages<=300; 
+
+
+
+----Where (...) Between and Clause
+
+--The BETWEEN AND Predicate will permit you to search in a range of values with the WHERE Clause, where values in the range are inclusive
+
+--Using the same example as before:
+
+SELECT Title, pages FROM Author
+	WHERE pages BETWEEN 290 AND 300;
+
+
+
+
+----Where (...) Or Clause
+
+--The OR predicate will simplify queries in which you want to retrieve data that can't be grouped under ranges.
+---For example, you want to retrieve the names of the books where authors come from Brazil and Australia
+
+SELECT Title, Author, Country FROM Author
+	WHERE country='AU' or country='BR';
+
+--Long lists of clauses will become very long if you requiere several countries to search for. 
+---The "in" predicate is here to save us some time.
+
+
+----Where (...) In Clause
+
+--Say, you want to retrieve data from authors from Switzerland, USA, Australia and Brazil.
+---The In clause is here to help. 
+
+--Example:
+
+SELECT Author, Title, Country FROM Author
+	WHERE Author IN ('AU', 'CH', 'US', 'BR');
+
+
+
+
+
+										--Sorting Select Result Sets
+
+
+--Order By Clause
+
+--The ORDER BY Clause will allow us to sort our query results.
+---Its syntax is:
+
+SELECT Col_name FROM Table_name
+	ORDER BY Col_name
+
+
+--Example:
+
+SELECT Title, Author FROM Author
+	ORDER BY Author;
+
+--By default, the data order is ascending.
+
+
+--To make results in descending order, use the DESC keyword:
+
+
+SELECT Title, Author FROM Author
+	ORDER BY Author DESC;
+
+--Another way to sort your query data is to use the column number in the sequence listed in your query.
+
+--If we wanted our query to be ordered by the second column listed, we use the ORDER BY clause with a 2:
+
+SELECT Title, Author FROM Author
+	ORDER BY 2;
+
+--In this case, the result will be ordered by Author name.
+
+
+
+
+										--Grouping Result Sets
+
+
+--Select Distinct Clause
+
+--The SELECT DISTINCT Clause will delete duplicates from a list in a query.
+---Its form is:
+
+SELECT DISTINCT(Col_name), Col_name2 FROM Table;
+
+
+--In the Book table, some countries will be duplicated if we wanted to know where authors from the list come from.
+--Example: Deleting all repeated countries and display them
+
+SELECT DISTINCT(Countries) FROM Author;
+
+
+--If we wanted to count how many authors come from the same country, we can use the GROUP BY Clause
+
+---Group By Clause 
+
+--In the example given before, the Select Statement would look like this:
+
+SELECT Country, count(country) FROM Author
+	GROUP BY country;
+
+--Since the second column has no name assigned, its name by default will be the column number, in this case 2.
+---To modify its name, the AS keyword will help
+
+
+
+--As Keyword Clause
+--Example:
+
+SELECT Country, count(Country) AS Count FROM Author
+	GROUP BY Country;
+
+--The result in this query will be the Country column and the second column named Count
+
+
+
+
+
+--Having Keyword Clause
+
+--The HAVING Keyword allows us to restrict the number of rows with a specific condition. It is important to note that the HAVING keyword only works with the GROUP BY Clause
+
+
+--Example: Restricting results to countries with more than 4 counts.
+
+SELECT Country, COUNT(Country) AS COUNT FROM Author
+	GROUP BY Country
+	HAVING COUNT(Country) > 4;
+
+
+
+
+
+											--Built-in Database Functions
+
+--Most of the databases come with Built-in SQL functions
+---that can be included as part of the statements in SQL.
+
+--These functions can reduce the amount of data to retrieve from the database, thus reducing network traffick and bandwidth use. This can speed up data processing.
+
+--The user can define functions within a database, but this is a more advanced topic.
+
+
+--Aggregate or Column functions
+
+--Aggregate functions include SUM, MIN, MAX, AVG, etc.
+
+--As an example, we will use an animal rescue that owns the "Petrescue" table, which contains a unique id per animal rescued (also a column), a quantity column, cost for the animal and rescue date.
+
+
+
+--Sum Function
+
+
+--SUM Function will add all the values in a column. 
+
+--Example: To add all the cost of the animal rescue into one value we would do this
+
+SELECT SUM(cost) FROM Petrescue;
+
+--The result would be a column with name "1" and the result.
+
+
+--Example 2: to name this column, we use the AS function
+
+SELECT SUM(cost) AS SUM_OF_COST FROM Petrescue;
+
+--The result is the same table with column 1 named "SUM_OF_COST"
+
+
+
+
+--Min, Max Functions
+
+
+--As the names clearly state, the result will be the minimum and maximum value of the column.
+
+--Example 1: Retrieve the least expensive rescue.
+
+SELECT MIN(cost) FROM Petrescue;
+
+--Example 2: Retrieve the most expensive rescue.
+
+SELECT MAX(cost) FROM Petrescue;
+
+--Example 3: Get the least expensive Dog rescue.
+
+SELECT MIN(cost) FROM Petrescue
+	WHERE Animal='Dog';
+
+
+
+--Average Function
+
+--This function will return the average value of a numeric column.
+
+--Example 1: To return the average cost of rescue.
+
+SELECT AVG(cost) FROM Petrescue;
+
+--Example 2: We could also add operations to this AVERAGE function. For example, in the table, there is a quantity of animals of the same specie rescued.
+---To get the average cost per dog, do this:
+
+SELECT AVG(Cost/Quantity) FROM Petrescue
+	WHERE Animal='Dog';
+
+
+
+
+--Scalar and String Functions
+
+--Scalar functions are to perform operations on every input value.
+---Examples of this are: ROUND(), LENGTH(), UCASE, LCASE
+
+
+--Scalar Functions
+--ROUND function
+
+--Example 1: to round every value in the cost column up or down, we do this:
+
+SELECT ROUND(cost) FROM Petrescue;
+
+
+
+
+-- String Functions
+
+--The string functions are used to perform operations on a string or multiple strings. This means, on CHAR or VARCHAR values.
+
+
+
+--Length Function
+
+
+--The length function returns the number of characters in a string.
+
+
+--Example 1: Retrieve the length of the animal names in every column
+
+SELECT LENGTH(Animal) FROM Petrescue;
+
+
+
+
+--Ucase and Lcase Functions
+
+
+--The result returned from these two functions, is the characters in upper case or lower case.
+
+--Example 1: Return every animal name in upper case
+
+SELECT UCASE(Animal) FROM Petrescue;
+
+--Example 2: Retrieve every animal name in lower case:
+
+SELECT LCASE(Animal) FROM Petrescue;
+
+--Example 3: String functions can be used with the WHERE clause. Retrieve all the data for every cat row in lower case:
+
+SELECT LCASE(Animal) FROM Petrescue
+	WHERE Animal='cat';
+
+
+--Example 4: One could apply different functions in one same query. To get every distinct animal name in lower case:
+
+SELECT DISTINCT(LCASE(Animal)) FROM Petrescue;
+
+
+
+
+
+--Date and Time Built-In Functions
+
+
+--Most databases use special datatypes for dates and time.
+--In the case of Db2 there are:
+
+---Date Datatype: YYYYMMDDD This datatype contains (8) digits
+
+---Time Datatype: HHMMSS (6) digits
+
+---Timestamp Datatype: YYYXXDDHHMMSSZZZZZZ (20) digits. Year, month, day, hour, minute, second and microseconds.
+
+
+--There are several Date and time functions to extract:
+---YEAR()
+---MONTH()
+---DAY()
+---DAYOFMONTH()
+---DAYOFWEEK()
+---DAYOFYEAR()
+---WEEK()
+---HOUR()
+---MINUTE()
+---SECOND()
+
+
+--Example 1: Extract the day portion in a date where a cat was rescued. Use the DAY() Function
+
+SELECT DAY(rescuedate) FROM Petrescue
+	WHERE Animal='Cat';
+
+--Example 2: Count all the rescues made in the month of May
+
+SELECT COUNT(*) FROM Petrescue
+	WHERE MONTH(Rescuedate)='05';
+
+
+
+--Date or Time Arithmetics
+
+
+--Example 1: What date will it be in 3 days after every rescue date?
+
+SELECT (RESCUEDATE + 3 DAYS) FROM Petrescue;
+
+
+
+
+--Current Date Function
+
+
+--The CURRENT_DATE function will return the date in which it is applied.
+---This function can be helpful if you need to calculate another day.
+
+--Example 1: How many days have passed after every rescue?
+
+
+SELECT (CURRENT_DATE - RESCUEDate) FROM Petrescue;
+
+--The result will be returned in YMMDD format
+
+
+
+
+
+												--Sub-queries and Nested Selects
+
+
+--Subqueries
+
+---A subquery is a query inside another query, placed within parentheses and nested within another query.
+
+--The regular syntax is:
+
+SELECT column1 FROM table
+	WHERE column2=(SELECT MAX(column2) FROM table)
+
+
+--Example 1: Retrieve a list with all employees that earn above the average salary.
+
+
+SELECT * FROM employees
+	WHERE salary > 
+		(SELECT AVG(salary) FROM employees);
+
+--If we only used "AVG(salary)" in the second line, the query would result into an error, as the software doesn't count the condition as a part of the last SELECT statement.
+--Therefore, conditions must contain direct values or another SELECT statement.
+
+
+
+
+--Column Expressions
+
+--These subselects must not necessarily be in the where clause.
+---One could substitute column names with another Sub-query.
+----These are called Column Expressions.
+
+
+
+--Example 1: If we wanted to compare the salary of every employee with the average salary, we do this:
+
+SELECT emp_id, salary, 
+	(SELECT AVG(salary) FROM Employee) AS AVG_SALARY
+		FROM employees;
+
+
+
+
+
+--Derived Tables or Table Expressions
+
+--A subquery can be a part of the FROM Clause. You will substitute the Table Name with another subquery.
+--These are called Derived Tables or Table Expressions, as the outer query will use the results
+---of the sub-query as the data source.
+
+
+--Example 1: Create a table expression that does not contain sensitive employee information (it will include emp_id, f_name, l_name, dep_id)
+
+SELECT * FROM 
+	(SELECT emp_id, f_name, l_name, dep_id FROM employees) AS emp4all;
+
+
+
+
+
+												--Working with Multiple Tables
+
+--There are multiple ways to access different tables in one same query, such as:
+---Sub-queries
+---Implicit JOIN
+---JOIN operators (INNER JOIN, OUTER JOIN, etc)
+
+--We will examine the first two in this part of the course. 
+
+
+
+--Sub-queries
+
+--Accessing multiple tables with Sub-queries is possible.
+
+--Example 1: Retrieve only employees for which department ID exists in the Department Table.
+
+
+SELECT * FROM employees
+	WHERE dep_id IN 
+		(SELECT department_id_department FROM departments);
+
+
+
+--Example 2: Retrieve a list of employees that come from a specific location (L0002)
+--There is no location info in the employees table, but the departments table does. Therefore, we use a sub-query for this.
+
+
+SELECT * FROM employees
+	WHERE dep_id IN 
+		(SELECT DEPT_id_Dep FROM departments
+			WHERE LOC_ID = L0002)
+
+
+--Example 3: Retrieve the dept ID and name for employees who earn more than $70.000:
+
+SELECT dept_id_dep, dept_name FROM departments
+	WHERE dept_id_dep IN 
+		(SELECT dep_ID FROM employees
+			WHERE salary > 70000);
+
+
+
+
+
+--Implicit Join
+
+--When using implicit joins, we don't use the JOIN operator, but we actually join two tables.
+-- The result is a full join or cartesian join. This will join all the rows from the first table with the rows from the second table.
+--Thus, you will see more rows than in both tables in themselves. 
+
+
+--Example 1: Join both, the employees and departemnts table in one, using an implicit Join
+
+SELECT * FROM employees, departments;
+
+
+--Example 2: Retrieve rows from employees and departments, only where the employees department id matches with the departments table department's id.
+
+SELECT * FROM employees AS E, departments AS D
+	WHERE E.dep_id= D.dept_id_dep;
+
+
+--Example 3: Retrieve the department name for each employee
+
+SELECT EMP_ID, Dep_Name 
+	FROM employees E, departments d
+		WHERE E.dep_id = d.dept_id_dep;
