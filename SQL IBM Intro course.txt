@@ -138,6 +138,12 @@
 
 											--Select Statement
 
+--The basic form of this statement is
+
+SELECT col_name FROM tablename
+
+--Double cuotes around one column name means the column name is case sensitive.
+
 --Select Count. Select the column, then count the values of every column selected
 
 SELECT COUNT(*) FROM tablename;
@@ -182,8 +188,8 @@ INSERT INTO Table (Columnames) VALUES(values);
 --Example
 
 INSERT INTO Movies (ReleaseYear, Title, Actors, Locations) 
-	VALUES(1995, 'Tha Movie', 'Barnie', 'Mexico')
-	VALUES (2005, 'Spongebob', 'Spongebob', 'Bikini Bottom');
+	VALUES(1995, 'Tha Movie', 'Barnie', 'Mexico'),
+	(2005, 'Spongebob', 'Spongebob', 'Bikini Bottom');
 
 
 
@@ -235,7 +241,7 @@ DELETE FROM Author
 --Cloud databases will provide ease of use and access, because anyone can access it through internet from almost anywhere.
 ---Organizations will pay only for what they use and the cloud will be stored in backups on the remote server, thus providing safety to your data. 
 
---Services for SQL Cloud Databases include
+--Services for SQL Cloud Databases include:
 ---Amazon Relational Database Services (RDS)
 ---Microsoft Azure SQL Database
 ---Oracle Database Cloud Service
