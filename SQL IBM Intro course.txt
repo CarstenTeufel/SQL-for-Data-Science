@@ -941,3 +941,4 @@ SELECT * FROM employees AS E, departments AS D
 SELECT EMP_ID, Dep_Name 
 	FROM employees E, departments d
 		WHERE E.dep_id = d.dept_id_dep;
+		
